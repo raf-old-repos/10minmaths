@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { db } from "../../util/db";
-import styles from "../styles/Home.module.css";
-import PrivateRoute from "../../components/private";
+import styles from "../../styles/Home.module.css";
+import PrivateRoute from "../../components/Private";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { EditableMathField, StaticMathField } from "react-mathquill";
@@ -106,39 +106,41 @@ export default function Problem({ e, problem, response }) {
 
   return (
     <PrivateRoute fallback={fallback}>
-      <div className={styles.container}>
-        <Head>
-          <title>
-            {problem.name} | {problem.date}
-          </title>
-          {/* TODO ! Add all the required headers here */}
-          <meta name="description" content="..." />
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        {/* Timer */}
-        <div>
-          <h1>{prettyCountDown}</h1>
+      <VisibilitySensor>
+        <div className={styles.container}>
+          <Head>
+            <title>
+              {problem.name} | {problem.date}
+            </title>
+            {/* TODO ! Add all the required headers here */}
+            <meta name="description" content="..." />
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
+          {/* Timer */}
+          <div>
+            <h1>{prettyCountDown}</h1>
+          </div>
+          {/* Problem Name */}
+          <div>
+            <h1>{problem.name}</h1>
+          </div>
+          {/* Question */}
+          <div>
+            <StaticMathField>{problem.body}</StaticMathField>
+          </div>
+          <div>
+            <EditableMathField
+              latex={userResponse}
+              onChange={(mathField) => {
+                setUserResponse(mathField.latex());
+              }}
+            />
+          </div>
+          <div>
+            <button onClick={handleSubmit}>Submit</button>
+          </div>
         </div>
-        {/* Problem Name */}
-        <div>
-          <h1>{problem.name}</h1>
-        </div>
-        {/* Question */}
-        <div>
-          <StaticMathField>{problem.body}</StaticMathField>
-        </div>
-        <div>
-          <EditableMathField
-            latex={userResponse}
-            onChange={(mathField) => {
-              setUserResponse(mathField.latex());
-            }}
-          />
-        </div>
-        <div>
-          <button onClick={handleSubmit}>Submit</button>
-        </div>
-      </div>
+      </VisibilitySensor>
     </PrivateRoute>
   );
 }

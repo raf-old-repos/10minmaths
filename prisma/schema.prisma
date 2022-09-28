@@ -69,6 +69,7 @@ model Response {
   user         User         @relation(fields: [userId], references: [id])
   userSolution String
   submitted    Boolean
+  forfeited    Boolean     @default(false)
 
   dailyProblemId String @db.ObjectId
   userId         String @db.ObjectId

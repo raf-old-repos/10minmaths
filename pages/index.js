@@ -1,6 +1,6 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-
+import Link from "next/link"
 /*
 
 Landing/Main page
@@ -17,9 +17,24 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* Do your magic here Matt */}
 
-      <main className={styles.main}></main>
+
+      <main className={styles.main}>
+        <div>
+          <h1>10 Min Maths</h1>
+          <p>
+            Daily problems to solve in 10 mins!
+          </p>
+        </div>
+        <div>
+          <Link>
+            Start the challenge!
+          </Link>
+          <p>
+            Once you press start, a timer will start. <span>Leaving the page will forfeit your response</span>
+          </p>
+        </div>
+      </main>
 
       <footer className={styles.footer}></footer>
     </div>
