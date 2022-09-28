@@ -7,6 +7,7 @@ Landing/Main page
 */
 
 export default function Home() {
+
   return (
     <div className={styles.container}>
       <Head>

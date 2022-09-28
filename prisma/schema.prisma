@@ -68,8 +68,7 @@ model Response {
   problem      DailyProblem @relation(fields: [dailyProblemId], references: [id])
   user         User         @relation(fields: [userId], references: [id])
   userSolution String
-  started      DateTime
-  ended        DateTime 
+  submitted    Boolean
 
   dailyProblemId String @db.ObjectId
   userId         String @db.ObjectId
