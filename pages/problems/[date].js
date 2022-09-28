@@ -26,7 +26,24 @@ export default function Problem({ e, problem }) {
   useEffect(() => {
 
     // Setting the visibility to false if count down is 0
-  
+    if (countDown === 0) {
+      localStorage.setItem("countdown-visibility", false)
+      setVisible(false);
+    }
+    const interval = setInterval(() => {
+      setCountDown(countDown - 1);
+
+      const pretty = {
+        m: Math.floor((countDown % 3600) / 60)
+          .toString()
+          .padStart(2, "0"),
+        s: Math.floor(countDown % 60)
+          .toString()
+          .padStart(2, "0"),
+      };
+
+      setPrettyCountDown(`${pretty.m}:${pretty.s}`);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, [countDown]);
