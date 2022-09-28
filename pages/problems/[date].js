@@ -156,7 +156,7 @@ export async function getStaticProps(ctx) {
 
     const response = await db.response.findFirst({
       where: {
-        userId: session.user.id,
+        userId: session.user.userId,
       },
     });
 
