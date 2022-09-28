@@ -67,7 +67,9 @@ model Response {
   id           String       @id @default(auto()) @map("_id") @db.ObjectId
   problem      DailyProblem @relation(fields: [dailyProblemId], references: [id])
   user         User         @relation(fields: [userId], references: [id])
-  userSolution String 
+  userSolution String
+  started      DateTime
+  ended        DateTime 
 
   dailyProblemId String @db.ObjectId
   userId         String @db.ObjectId
