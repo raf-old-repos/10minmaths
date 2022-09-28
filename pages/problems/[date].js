@@ -5,6 +5,7 @@ import PrivateRoute from "../../components/Private";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { EditableMathField, StaticMathField } from "react-mathquill";
+import PageVisibility from "react-page-visibility";
 
 /*
 
@@ -106,7 +107,7 @@ export default function Problem({ e, problem, response }) {
 
   return (
     <PrivateRoute fallback={fallback}>
-      <VisibilitySensor>
+      <PageVisibility>
         <div className={styles.container}>
           <Head>
             <title>
@@ -140,7 +141,7 @@ export default function Problem({ e, problem, response }) {
             <button onClick={handleSubmit}>Submit</button>
           </div>
         </div>
-      </VisibilitySensor>
+      </PageVisibility>
     </PrivateRoute>
   );
 }
